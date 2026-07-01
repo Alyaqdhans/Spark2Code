@@ -370,6 +370,106 @@ namespace Csharp_Fundamentals___Part_1
             {
                 Console.WriteLine("The lengths do not form a triangle.");
             }
+
+
+            //Task 14 - Online Store Checkout
+            Console.Write("Enter product code [1-3]: ");
+            string productCode = Console.ReadLine()!;
+
+            Console.Write("Enter quantity: ");
+            int quantity = int.Parse(Console.ReadLine()!);
+
+            Console.Write("Do you have a discount coupon? [yes/no]: ");
+            string coupon = Console.ReadLine()!;
+
+            float price = 0;
+            string product;
+            switch (productCode)
+            {
+                case "1":
+                    price = 8.500f;
+                    product = "Headphones";
+                    break;
+                case "2":
+                    price = 12.000f;
+                    product = "Keyboard";
+                    break;
+                case "3":
+                    price = 5.000f;
+                    product = "Mouse";
+                    break;
+                default:
+                    Console.WriteLine("Invalid product code");
+                    return;
+            }
+
+            float subtotal = price * quantity;
+            float discount = 0;
+            if (coupon == "yes" && subtotal > 20.000f)
+            {
+                discount = subtotal * 0.10f;
+            }
+
+            subtotal -= discount;
+            float tax = 0.05f * subtotal;
+            float finalTotal = subtotal + tax;
+
+            Console.WriteLine("Product: " + product + ", Discount: " + discount + ", Tax: " + tax + ", Total: " + finalTotal);
+
+
+            //Task 15 - University Admission Decision
+            Console.Write("Enter Program Type [S Science / A Arts]: ");
+            string programType = Console.ReadLine()!;
+
+            Console.Write("Enter your GPA: ");
+            float gpa = float.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter your entrance exam score: ");
+            int examScore = int.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter your extracurricular achievement [yes/no]: ");
+            string achieve = Console.ReadLine()!;
+
+            switch (programType)
+            {
+                case "S":
+                    if (gpa >= 3.0 && examScore >= 75)
+                    {
+                        Console.WriteLine("Admitted");
+                    }
+                    else
+                    {
+                        if (achieve == "yes")
+                        {
+                            Console.WriteLine("Conditionally Admitted");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not admitted");
+                        }
+                    }
+                    break;
+                case "A":
+                    if (gpa >= 2.5 && examScore >= 60)
+                    {
+                        Console.WriteLine("Admitted");
+                    }
+                    else
+                    {
+                        if (achieve == "yes")
+                        {
+                            Console.WriteLine("Conditionally Admitted");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not admitted");
+                        }
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid program type");
+                    break;
+            }
         }
     }
 }
