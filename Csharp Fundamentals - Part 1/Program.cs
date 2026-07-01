@@ -20,6 +20,7 @@ namespace Csharp_Fundamentals___Part_1
             //Task 2 - Rectangle Calculator
             Console.Write("Enter the length: ");
             float length = float.Parse(Console.ReadLine()!);
+
             Console.Write("Enter the width: ");
             float width = float.Parse(Console.ReadLine()!);
 
@@ -44,6 +45,7 @@ namespace Csharp_Fundamentals___Part_1
             //Task 4 - Voting Eligibility
             Console.Write("Enter your age: ");
             int voteAge = int.Parse(Console.ReadLine()!);
+
             Console.Write("Is your ID valid [yes/no]: ");
             string valid = Console.ReadLine()!;
             bool isValid = valid == "yes";
@@ -131,6 +133,7 @@ namespace Csharp_Fundamentals___Part_1
             //Task 8 - Restaurant Bill with Membership Discount
             Console.Write("Enter the total bill amount: ");
             float billAmount = float.Parse(Console.ReadLine()!);
+
             Console.Write("Are you a loyalty member? [yes/no]: ");
             string loyalty = Console.ReadLine()!;
             
@@ -180,8 +183,10 @@ namespace Csharp_Fundamentals___Part_1
             //Task 10 - Mini Calculator
             Console.Write("Enter the first number: ");
             float operand1 = float.Parse(Console.ReadLine()!);
+
             Console.Write("Enter the second number: ");
             float operand2 = float.Parse(Console.ReadLine()!);
+
             Console.Write("Enter the operator [+ - * / %]: ");
             string op = Console.ReadLine()!;
 
@@ -219,6 +224,151 @@ namespace Csharp_Fundamentals___Part_1
                 default:
                     Console.WriteLine("Invalid operator");
                     break;
+            }
+
+
+            //Task 11 - Loan Eligibility System
+            Console.Write("Enter your age: ");
+            int loanAge = int.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter your monthly income: ");
+            float monthlyIncome = float.Parse(Console.ReadLine()!);
+
+            Console.Write("Do you have an existing loan? [yes/no]: ");
+            string existingLoan = Console.ReadLine()!;
+
+            if (loanAge >= 21 && loanAge <= 60 && monthlyIncome >= 400 && existingLoan == "no")
+            {
+                Console.WriteLine("You are eligible for a loan.");
+            }
+            else
+            {
+                Console.WriteLine("You are not eligible for a loan.");
+                if (loanAge < 21 || loanAge > 60)
+                {
+                    Console.WriteLine("Reason: age is out of range.");
+                }
+                else if (monthlyIncome < 400)
+                {
+                    Console.WriteLine("Reason: income too low.");
+                }
+                else if (existingLoan == "yes")
+                {
+                    Console.WriteLine("Reason: you have an existing loan.");
+                }
+            }
+
+
+            //Task 12 - Shipping Cost Calculator
+            Console.WriteLine("[A] local");
+            Console.WriteLine("[B] national");
+            Console.WriteLine("[C] international");
+            Console.Write("Enter a region code: ");
+            string region = Console.ReadLine()!;
+
+            Console.Write("Enter the weight of the package (kg): ");
+            float weight = float.Parse(Console.ReadLine()!);
+
+            float charge;
+
+            switch (region)
+            {
+                case "A":
+                    charge = 1.000f;
+                    Console.WriteLine("Base shipping cost: " + charge + " OMR");
+                    if (weight > 5)
+                    {
+                        charge += 2.000f;
+                        Console.WriteLine("Extra shipping cost: 2.000 OMR");
+                    }
+                    else if (weight > 10)
+                    {
+                        charge += 5.000f;
+                        Console.WriteLine("Extra shipping cost: 5.000 OMR");
+                    }
+                    else
+                    {
+                        charge += 0;
+                        Console.WriteLine("Extra shipping cost: None");
+                    }
+                    Console.WriteLine("Total shipping cost: " + charge + " OMR");
+                    break;
+                case "B":
+                    charge = 3.000f;
+                    Console.WriteLine("Base shipping cost: " + charge + " OMR");
+                    if (weight > 5)
+                    {
+                        charge += 2.000f;
+                        Console.WriteLine("Extra shipping cost: 2.000 OMR");
+                    }
+                    else if (weight > 10)
+                    {
+                        charge += 5.000f;
+                        Console.WriteLine("Extra shipping cost: 5.000 OMR");
+                    }
+                    else
+                    {
+                        charge += 0;
+                        Console.WriteLine("Extra shipping cost: None");
+                    }
+                    Console.WriteLine("Total shipping cost: " + charge + " OMR");
+                    break;
+                case "C":
+                    charge = 7.000f;
+                    Console.WriteLine("Base shipping cost: " + charge + " OMR");
+                    if (weight > 5)
+                    {
+                        charge += 2.000f;
+                        Console.WriteLine("Extra shipping cost: 2.000 OMR");
+                    }
+                    else if (weight > 10)
+                    {
+                        charge += 5.000f;
+                        Console.WriteLine("Extra shipping cost: 5.000 OMR");
+                    }
+                    else
+                    {
+                        charge += 0;
+                        Console.WriteLine("Extra shipping cost: None");
+                    }
+                    Console.WriteLine("Total shipping cost: " + charge + " OMR");
+                    break;
+                default:
+                    Console.WriteLine("Invalid region code");
+                    break;
+            }
+
+
+            //Task 13 - Triangle Type Classifier
+            Console.WriteLine("Enter the lengths of the three sides of the triangle");
+
+            Console.Write("Side 1: ");
+            float side1 = float.Parse(Console.ReadLine()!);
+
+            Console.Write("Side 2: ");
+            float side2 = float.Parse(Console.ReadLine()!);
+
+            Console.Write("Side 3: ");
+            float side3 = float.Parse(Console.ReadLine()!);
+
+            if (side1 + side2 > side3 || side1 + side3 > side2 || side2 + side3 > side2)
+            {
+                if (side1 == side2 && side2 == side3 && side1 == side3)
+                {
+                    Console.WriteLine("The triangle is Equilateral");
+                }
+                else if (side1 == side2 || side2 == side3 || side1 == side3)
+                {
+                    Console.WriteLine("The triangle is Isosceles");
+                }
+                else
+                {
+                    Console.WriteLine("The triangle is Scalene");
+                }
+            }
+            else
+            {
+                Console.WriteLine("The lengths do not form a triangle.");
             }
         }
     }
