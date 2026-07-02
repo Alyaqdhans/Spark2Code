@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Csharp_Fundamentals___Part_2
@@ -153,6 +154,41 @@ namespace Csharp_Fundamentals___Part_2
                 }
             }
             Console.WriteLine("The sum is " + sumEven);
+
+
+            //Task 9 - Validated Positive Number Input
+            int choice = 0;
+            bool isValid = false;
+
+            do
+            {
+                try
+                {
+                    Console.Write("Enter a number: ");
+                    choice = int.Parse(Console.ReadLine()!);
+                    
+                    if (choice < 1)
+                    {
+                        continue;
+                    }
+
+                    isValid = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Error: Invalid input");
+                    continue;
+                }
+            }
+            while (!isValid);
+
+            int numSum = 0;
+
+            for (int i = 1; i <= choice; i++)
+            {
+                numSum += i;
+            }
+            Console.WriteLine("The sum of numbers from 1 to " + choice + " is: " + numSum);
         }
     }
 }
