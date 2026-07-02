@@ -157,7 +157,7 @@ namespace Csharp_Fundamentals___Part_2
 
 
             //Task 9 - Validated Positive Number Input
-            int choice = 0;
+            int choiceNum = 0;
             bool isValid = false;
 
             do
@@ -165,9 +165,9 @@ namespace Csharp_Fundamentals___Part_2
                 try
                 {
                     Console.Write("Enter a number: ");
-                    choice = int.Parse(Console.ReadLine()!);
-                    
-                    if (choice < 1)
+                    choiceNum = int.Parse(Console.ReadLine()!);
+
+                    if (choiceNum < 1)
                     {
                         continue;
                     }
@@ -184,11 +184,107 @@ namespace Csharp_Fundamentals___Part_2
 
             int numSum = 0;
 
-            for (int i = 1; i <= choice; i++)
+            for (int i = 1; i <= choiceNum; i++)
             {
                 numSum += i;
             }
-            Console.WriteLine("The sum of numbers from 1 to " + choice + " is: " + numSum);
+            Console.WriteLine("The sum of numbers from 1 to " + choiceNum + " is: " + numSum);
+
+
+            //Task 10 - Simple ATM Simulation
+            int pin = 1234;
+            int enteredPin = 0;
+            float balance = 100.000f;
+            int attemptsLeft = 3;
+
+            while (attemptsLeft > 0)
+            {
+                try
+                {
+                    Console.Write("Enter PIN: ");
+                    enteredPin = int.Parse(Console.ReadLine()!);
+
+                    if (enteredPin != pin)
+                    {
+                        attemptsLeft--;
+                        continue;
+                    }
+
+                    Console.WriteLine("Menu:");
+                    Console.WriteLine("1) Deposit");
+                    Console.WriteLine("2) Widthraw");
+                    Console.WriteLine("3) Check Balance");
+                    Console.WriteLine("4) Exit");
+                    bool looping = true;
+                    string input;
+
+                    while (looping)
+                    {
+                        Console.Write("Enter your choice: ");
+                        input = Console.ReadLine()!;
+
+                        switch (input)
+                        {
+                            case "1":
+                                try
+                                {
+                                    Console.Write("Enter amount to deposit: ");
+                                    float depositAmount = float.Parse(Console.ReadLine()!);
+
+                                    balance += depositAmount;
+                                    Console.WriteLine($"Deposited: {depositAmount}, New Balance: {balance}");
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Error: Invalid input");
+                                }
+                                break;
+
+                            case "2":
+                                try
+                                {
+                                    Console.Write("Enter amount to withdraw: ");
+                                    float withdrawAmount = float.Parse(Console.ReadLine()!);
+                                    if (withdrawAmount > balance)
+                                    {
+                                        Console.WriteLine("Error: Insufficient funds");
+                                    }
+                                    else
+                                    {
+                                        balance -= withdrawAmount;
+                                        Console.WriteLine($"Withdrew: {withdrawAmount}, New Balance: {balance}");
+                                    }
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Error: Invalid input");
+                                }
+                                break;
+
+                            case "3":
+                                Console.WriteLine($"Current Balance: {balance}");
+                                break;
+
+                            case "4":
+                                Console.WriteLine("Exiting");
+                                looping = false;
+                                attemptsLeft = -1;
+                                break;
+                        }
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Error: Invalid input");
+                    attemptsLeft--;
+                    continue;
+                }
+            }
+
+            if (attemptsLeft == 0)
+            {
+                Console.WriteLine("Card Blocked");
+            }
         }
     }
 }
