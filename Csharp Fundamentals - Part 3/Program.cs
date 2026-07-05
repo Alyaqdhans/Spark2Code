@@ -130,6 +130,48 @@ namespace Csharp_Fundamentals___Part_3
                 Console.WriteLine("Not Found");
             }
 
+
+            //Task 11 - One - Time Password(OTP) Generator
+            int OTP = Random.Shared.Next(1000, 9999);
+            Console.WriteLine("Your OTP is: " + OTP);
+
+            try
+            {
+                bool verified = false;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.Write("Enter the OTP: ");
+                    int enteredOTP = int.Parse(Console.ReadLine()!);
+
+                    if (enteredOTP == OTP)
+                    {
+                        Console.WriteLine("OTP Verified");
+                        verified = true;
+                        break;
+                    }
+                }
+
+                if (verified == false) Console.WriteLine("Verification Failed");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid OTP format");
+            }
+
+
+            //Task 12 - Birthday Insights
+            Console.Write("Enter your date of birth (yyyy-MM-dd): ");
+            DateTime DOB = DateTime.Parse(Console.ReadLine()!);
+            int age = DateTime.Today.Year - DOB.Year;
+
+            if (DateTime.Today.Month < DOB.Month || (DateTime.Today.Month == DOB.Month && DateTime.Today.Day < DOB.Day))
+            {
+                age--;
+            }
+
+            Console.WriteLine("You are " + age + " years old");
+            Console.WriteLine("You were born on a " + DOB.DayOfWeek);
         }
     }
 }
