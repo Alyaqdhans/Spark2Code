@@ -1,4 +1,7 @@
-﻿using System.Xml.Linq;
+﻿using System.Reflection.Emit;
+using System.Timers;
+using System.Xml.Linq;
+using static System.Net.WebRequestMethods;
 
 namespace Csharp_Fundamentals___Part_3
 {
@@ -91,6 +94,40 @@ namespace Csharp_Fundamentals___Part_3
             else
             {
                 Console.WriteLine("Membership is valid until " + membershipEnd.ToString("yyyy-MM-dd"));
+            }
+
+
+            //Task 9 - Round Up / Round Down Explorer
+            Console.Write("Enter a decimal number: ");
+            double decimalNum = double.Parse(Console.ReadLine()!);
+
+            Console.WriteLine("Rounded: " + Math.Round(decimalNum));
+            Console.WriteLine("Rounded Up: " + Math.Ceiling(decimalNum));
+            Console.WriteLine("Rounded Down: " + Math.Floor(decimalNum));
+
+
+            //Task 10 - Word Position Finder
+            Console.Write("Enter a sentence: ");
+            string sentence = Console.ReadLine()!;
+
+            Console.Write("Enter a word to find: ");
+            string word = Console.ReadLine()!;
+
+            if (sentence.Contains(word))
+            {
+                int positionStart = sentence.IndexOf(word);
+                int positionLast = sentence.LastIndexOf(word);
+
+                Console.WriteLine($"Found at position {positionStart}");
+
+                if (positionStart != positionLast)
+                {
+                    Console.WriteLine($"Found at position {positionLast}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Not Found");
             }
 
         }
