@@ -1,4 +1,6 @@
-﻿namespace Csharp_Fundamentals___Part_3
+﻿using System.Xml.Linq;
+
+namespace Csharp_Fundamentals___Part_3
 {
     internal class Program
     {
@@ -37,6 +39,59 @@
             DateTime endPeriod = DateTime.Today.AddDays(subDays);
 
             Console.WriteLine("Subscription end date is " + endPeriod.ToString("yyyy-MM-dd"));
+
+
+            //Task 5 - Grade Rounding System
+            Console.Write("Enter you exam score (from 100): ");
+            double score = double.Parse(Console.ReadLine()!);
+            score = Math.Round(score);
+
+            if (score >= 60) Console.WriteLine("Pass with a score of " + score);
+            else Console.WriteLine("Fail with a score of " + score);
+
+
+            //Task 6 - Password Strength Checker
+            Console.Write("Enter your password: ");
+            string password = Console.ReadLine()!;
+
+            if (password.ToLower().Contains("password") && password.Length < 8)
+            {
+                Console.WriteLine("Weak Password");
+            }
+            else
+            {
+                Console.WriteLine("Strong Password");
+            }
+
+
+            //Task 7 - Clean Name Comparator
+            Console.Write("Enter the first name: ");
+            string name1 = Console.ReadLine()!.Trim().ToLower();
+
+            Console.Write("Enter the second name: ");
+            string name2 = Console.ReadLine()!.Trim().ToLower();
+
+            if (name1 == name2) Console.WriteLine("Match");
+            else Console.WriteLine("No Match");
+
+
+            //Task 8 - Membership Expiry Checker
+            Console.Write("Enter membership start date (yyyy-MM-dd): ");
+            DateTime membershipStart = DateTime.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter membership valid days: ");
+            int validDays = int.Parse(Console.ReadLine()!);
+
+            DateTime membershipEnd = membershipStart.AddDays(validDays);
+
+            if (DateTime.Today > membershipEnd)
+            {
+                Console.WriteLine("Membership expired on " + membershipEnd.ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                Console.WriteLine("Membership is valid until " + membershipEnd.ToString("yyyy-MM-dd"));
+            }
 
         }
     }
