@@ -105,6 +105,25 @@
             Console.WriteLine("Result of " + operation + ": " + result);
         }
 
+        static double CalculateAverage(double score1, double score2, double score3)
+        {
+            return (score1 + score2 + score3) / 3;
+        }
+        static string GetGradeLetter2(double score)
+        {
+            if (score >= 90) return "A";
+            else if (score >= 80) return "B";
+            else if (score >= 70) return "C";
+            else if (score >= 60) return "D";
+            else return "F";
+        }
+        static void PrintReportCard(string studentName, double average, string grade)
+        {
+            Console.WriteLine("Report Card for " + studentName);
+            Console.WriteLine("Average Score: " + average);
+            Console.WriteLine("Grade: " + grade);
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -235,6 +254,25 @@
                         break;
                 }
             }
+
+
+            //Task 12 - Student Report Card Generator
+            Console.Write("Enter student name: ");
+            string studentName = Console.ReadLine()!;
+
+            Console.Write("Enter score 1: ");
+            double score1 = double.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter score 2: ");
+            double score2 = double.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter score 3: ");
+            double score3 = double.Parse(Console.ReadLine()!);
+
+            double averageScore = CalculateAverage(score1, score2, score3);
+            string gradeLetter = GetGradeLetter2(averageScore);
+
+            PrintReportCard(studentName, averageScore, gradeLetter);
         }
     }
 }
