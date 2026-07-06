@@ -1,8 +1,4 @@
-﻿using System.Drawing;
-using System.Reflection.Metadata;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Csharp_Fundamentals___Part_4
+﻿namespace Csharp_Fundamentals___Part_4
 {
     internal class Program
     {
@@ -40,6 +36,15 @@ namespace Csharp_Fundamentals___Part_4
         static double CalculatePerimeter(double length, double width)
         {
             return 2 * (length + width);
+        }
+
+        static string GetGradeLetter(int score)
+        {
+            if (score >= 90) return "A";
+            else if (score >= 80) return "B";
+            else if (score >= 70) return "C";
+            else if (score >= 60) return "D";
+            else return "F";
         }
 
         static void Main(string[] args)
@@ -81,6 +86,12 @@ namespace Csharp_Fundamentals___Part_4
 
             Console.WriteLine("Area: " + CalculateArea(length, width));
             Console.WriteLine("Perimeter: " + CalculatePerimeter(length, width));
+
+
+            //Task 7 - Grade Letter Function
+            Console.Write("Enter score: ");
+            int score = int.Parse(Console.ReadLine()!);
+            Console.WriteLine("Grade: " + GetGradeLetter(score));
         }
     }
 }
