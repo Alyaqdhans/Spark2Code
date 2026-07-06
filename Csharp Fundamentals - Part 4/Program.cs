@@ -19,6 +19,13 @@ namespace Csharp_Fundamentals___Part_4
             return (celsius * 9 / 5) + 32;
         }
 
+        static void DisplayMenu()
+        {
+            Console.WriteLine("1) Start");
+            Console.WriteLine("2) Help");
+            Console.WriteLine("3) Exit");
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -36,6 +43,10 @@ namespace Csharp_Fundamentals___Part_4
             Console.Write("Enter a number: ");
             double celsius = double.Parse(Console.ReadLine()!);
             Console.WriteLine("Temp in Fahrenheit is " + CelsiusToFahrenheit(celsius));
+
+
+            //Task 4 - Fixed Menu Display Function
+            DisplayMenu();
         }
     }
 }
