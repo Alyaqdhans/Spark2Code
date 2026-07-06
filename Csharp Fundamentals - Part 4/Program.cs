@@ -68,6 +68,15 @@
             return a * b * c;
         }
 
+        static double CalculateArea2(double side)
+        {
+            return side * side;
+        }
+        static double CalculateArea2(double length, double width)
+        {
+            return length * width;
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -125,6 +134,30 @@
             Console.WriteLine("Multiply(int, int): " + Multiply(3, 4));
             Console.WriteLine("Multiply(double, double): " + Multiply(3.5, 2.0));
             Console.WriteLine("Multiply(int, int, int): " + Multiply(2, 3, 4));
+
+
+            //Task 10 - Overloaded Area Calculator
+            Console.Write("Choose shape (1 for square, 2 for rectangle): ");
+            string shapeChoice = Console.ReadLine()!;
+
+            if (shapeChoice == "1")
+            {
+                Console.Write("Enter side length: ");
+                double side = double.Parse(Console.ReadLine()!);
+                Console.WriteLine("Area of square: " + CalculateArea2(side));
+            }
+            else if (shapeChoice == "2")
+            {
+                Console.Write("Enter length: ");
+                double rectLength = double.Parse(Console.ReadLine()!);
+                Console.Write("Enter width: ");
+                double rectWidth = double.Parse(Console.ReadLine()!);
+                Console.WriteLine("Area of rectangle: " + CalculateArea2(rectLength, rectWidth));
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice.");
+            }
         }
     }
 }
