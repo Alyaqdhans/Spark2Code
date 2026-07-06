@@ -26,6 +26,11 @@ namespace Csharp_Fundamentals___Part_4
             Console.WriteLine("3) Exit");
         }
 
+        static bool IsEven(int number)
+        {
+            return number % 2 == 0;
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -47,6 +52,13 @@ namespace Csharp_Fundamentals___Part_4
 
             //Task 4 - Fixed Menu Display Function
             DisplayMenu();
-        }
+
+
+            //Task 5 - Even or Odd Function
+            Console.Write("Enter a number: ");
+            int num = int.Parse(Console.ReadLine()!);
+            if (IsEven(num)) Console.WriteLine("The number is even.");
+            else Console.WriteLine("The number is odd.");
+         }
     }
 }
