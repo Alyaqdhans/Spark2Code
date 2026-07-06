@@ -47,6 +47,14 @@
             else return "F";
         }
 
+        static void Countdown(int start)
+        {
+            for (int i = start; i >= 1; i--)
+            {
+                Console.WriteLine("Count: " + i);
+            }
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -92,6 +100,12 @@
             Console.Write("Enter score: ");
             int score = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Grade: " + GetGradeLetter(score));
+
+
+            //Task 8 - Countdown Function
+            Console.Write("Enter a number to countdown: ");
+            int countdownStart = int.Parse(Console.ReadLine()!);
+            Countdown(countdownStart);
         }
     }
 }
