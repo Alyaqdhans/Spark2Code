@@ -1,4 +1,6 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Drawing;
+using System.Reflection.Metadata;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Csharp_Fundamentals___Part_4
 {
@@ -31,6 +33,15 @@ namespace Csharp_Fundamentals___Part_4
             return number % 2 == 0;
         }
 
+        static double CalculateArea(double length, double width)
+        {
+            return length * width;
+        }
+        static double CalculatePerimeter(double length, double width)
+        {
+            return 2 * (length + width);
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -59,6 +70,17 @@ namespace Csharp_Fundamentals___Part_4
             int num = int.Parse(Console.ReadLine()!);
             if (IsEven(num)) Console.WriteLine("The number is even.");
             else Console.WriteLine("The number is odd.");
-         }
+
+
+            //Task 6 - Rectangle Area & Perimeter Functions
+            Console.Write("Enter length: ");
+            double length = double.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter width: ");
+            double width = double.Parse(Console.ReadLine()!);
+
+            Console.WriteLine("Area: " + CalculateArea(length, width));
+            Console.WriteLine("Perimeter: " + CalculatePerimeter(length, width));
+        }
     }
 }
