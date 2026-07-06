@@ -55,6 +55,19 @@
             }
         }
 
+        static int Multiply(int a, int b)
+        {
+            return a * b;
+        }
+        static double Multiply(double a, double b)
+        {
+            return a * b;
+        }
+        static int Multiply(int a, int b, int c)
+        {
+            return a * b * c;
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -106,6 +119,12 @@
             Console.Write("Enter a number to countdown: ");
             int countdownStart = int.Parse(Console.ReadLine()!);
             Countdown(countdownStart);
+
+
+            //Task 9 - Overloaded Multiply Function
+            Console.WriteLine("Multiply(int, int): " + Multiply(3, 4));
+            Console.WriteLine("Multiply(double, double): " + Multiply(3.5, 2.0));
+            Console.WriteLine("Multiply(int, int, int): " + Multiply(2, 3, 4));
         }
     }
 }
