@@ -77,6 +77,34 @@
             return length * width;
         }
 
+        static double Add(double a, double b)
+        {
+            return a + b;
+        }
+        static double Subtract(double a, double b)
+        {
+            return a - b;
+        }
+        static double MultiplyNumbers(double a, double b)
+        {
+            return a * b;
+        }
+        static double DivideNumbers(double a, double b)
+        {
+            try
+            {
+                return a / b;
+            }
+            catch (DivideByZeroException)
+            {
+                return 0;
+            }
+        }
+        static void DisplayResult(string operation, double result)
+        {
+            Console.WriteLine("Result of " + operation + ": " + result);
+        }
+
         static void Main(string[] args)
         {
             //Task 1 - Personalized Welcome Function
@@ -157,6 +185,55 @@
             else
             {
                 Console.WriteLine("Invalid choice.");
+            }
+
+
+            //Task 11 - Function - Based Calculator
+            while (true)
+            {
+                Console.WriteLine("Choose Operation:");
+                Console.WriteLine("1) Add");
+                Console.WriteLine("2) Subtract");
+                Console.WriteLine("3) Multiply");
+                Console.WriteLine("4) Divide");
+                Console.WriteLine("5) <Exit>");
+
+                Console.Write("Enter your choice: ");
+                string choice = Console.ReadLine()!;
+
+                if (choice == "5")
+                {
+                    Console.WriteLine("Exiting the calculator. Goodbye!");
+                    break;
+                }
+
+                Console.Write("Enter first number: ");
+                double firstNum = double.Parse(Console.ReadLine()!);
+                Console.Write("Enter second number: ");
+                double secondNum = double.Parse(Console.ReadLine()!);
+
+                switch (choice)
+                {
+                    case "1":
+                        DisplayResult("Addition", Add(firstNum, secondNum));
+                        break;
+
+                    case "2":
+                        DisplayResult("Subtraction", Subtract(firstNum, secondNum));
+                        break;
+
+                    case "3":
+                        DisplayResult("Multiplication", MultiplyNumbers(firstNum, secondNum));
+                        break;
+
+                    case "4":
+                        DisplayResult("Division", DivideNumbers(firstNum, secondNum));
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid Choice.");
+                        break;
+                }
             }
         }
     }
