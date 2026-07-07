@@ -33,6 +33,19 @@
             {
                 Console.WriteLine(task);
             }
+
+
+            //Task 3 - Browsing History Stack
+            Stack<string> history = new Stack<string>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write($"Enter URL {i + 1}: ");
+                string url = Console.ReadLine()!;
+                history.Push(url);
+            }
+
+            Console.WriteLine(history.Pop());
         }
     }
 }
