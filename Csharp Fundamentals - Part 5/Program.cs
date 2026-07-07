@@ -123,6 +123,30 @@
             Console.WriteLine("1st place: " + scores[0]);
             Console.WriteLine("2nd place: " + scores[1]);
             Console.WriteLine("3rd place: " + scores[2]);
+
+
+            //Task 8 - Undo Last Action
+            Stack<string> actions = new Stack<string>();
+            
+            string actionLoop = "";
+            while (actionLoop != "stop")
+            {
+                Console.Write("Enter action: ");
+                actionLoop = Console.ReadLine()!;
+                if (actionLoop != "stop")
+                {
+                    actions.Push(actionLoop);
+                }
+            }
+
+            Console.WriteLine("Undoing last action: " + actions.Pop());
+            Console.WriteLine("Undoing last action: " + actions.Pop());
+
+            foreach (string action in actions)
+            {
+                Console.WriteLine(action);
+            }
+
         }
     }
 }
