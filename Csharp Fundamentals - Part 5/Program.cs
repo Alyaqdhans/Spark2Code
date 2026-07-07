@@ -105,6 +105,24 @@
             {
                 Console.WriteLine(customer);
             }
+
+
+            //Task 7 - High Score Podium
+            List<int> scores = new List<int>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write($"Enter score {i + 1}: ");
+                int score = int.Parse(Console.ReadLine()!);
+                scores.Add(score);
+            }
+
+            scores.Sort();
+            scores.Reverse();
+
+            Console.WriteLine("1st place: " + scores[0]);
+            Console.WriteLine("2nd place: " + scores[1]);
+            Console.WriteLine("3rd place: " + scores[2]);
         }
     }
 }
