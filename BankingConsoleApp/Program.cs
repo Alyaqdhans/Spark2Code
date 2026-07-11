@@ -154,7 +154,21 @@
 
         static void ShowBalance()
         {
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine()!;
 
+            if (!accountNumbers.Contains(accountNumber))
+            {
+                Console.WriteLine("Account number not found. Please try again.");
+                return;
+            }
+
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            Console.WriteLine("Customer Name: " + customerNames[accountIndex]);
+            Console.WriteLine("Account Number: " + accountNumbers[accountIndex]);
+            Console.WriteLine("Current Balance: " + balances[accountIndex]);
+            Console.WriteLine("-----------------------------------");
         }
 
         static void TransferAmount()
