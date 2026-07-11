@@ -96,7 +96,31 @@
 
         static void DepositMoney()
         {
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine()!;
 
+            if (!accountNumbers.Contains(accountNumber))
+            {
+                Console.WriteLine("Account number not found. Please try again.");
+                return;
+            }
+
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            Console.Write("Enter amount to deposit: ");
+            double amount = double.Parse(Console.ReadLine()!);
+
+            if (amount < 1)
+            {
+                Console.WriteLine("Invalid amount. Please enter a positive value.");
+                return;
+            }
+
+            balances[accountIndex] += amount;
+
+            Console.WriteLine("Deposit successful!");
+            Console.WriteLine("New Balance: " + balances[accountIndex]);
+            Console.WriteLine("-----------------------------------");
         }
 
         static void WithdrawMoney()
