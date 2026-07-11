@@ -16,7 +16,7 @@
                 Console.WriteLine("3. Withdraw Money");
                 Console.WriteLine("4. Show Balance");
                 Console.WriteLine("5. Transfer Amount");
-                Console.WriteLine("6. <your 1st custom service - choose a name>");
+                Console.WriteLine("6. Check Bank Users");
                 Console.WriteLine("7. <your 2nd custom service - choose a name>");
                 Console.WriteLine("8. Exit");
                 Console.Write("Choose an option: ");
@@ -52,7 +52,7 @@
                         break;
 
                     case "6":
-                        CustomService1();
+                        CheckUsers();
                         break;
 
                     case "7":
@@ -206,9 +206,20 @@
             Console.WriteLine("-----------------------------------");
         }
 
-        static void CustomService1()
+        static void CheckUsers()
         {
-
+            if (accountNumbers.Count == 0)
+            {
+                Console.WriteLine("No users found.");
+                return;
+            }
+            
+            int i = 1;
+            foreach (string name in customerNames)
+            {
+                Console.WriteLine(i + ") Customer Name: " + name);
+                i++;
+            }
         }
 
         static void CustomService2()
