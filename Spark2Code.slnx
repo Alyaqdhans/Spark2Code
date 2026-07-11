@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="BankingConsoleApp/BankingConsoleApp.csproj" Id="1d1c6750-f027-4476-86d1-f54a03546f63" />
   <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
   <Project Path="Csharp Fundamentals - Part 1/Csharp Fundamentals - Part 1.csproj" Id="a1623913-12fc-49d4-89df-9777a60793c0" />
   <Project Path="Csharp Fundamentals - Part 2/Csharp Fundamentals - Part 2.csproj" Id="a64675af-4a1b-45e4-8ce5-e38694a6da7b" />
