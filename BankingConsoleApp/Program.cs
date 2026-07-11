@@ -17,7 +17,7 @@
                 Console.WriteLine("4. Show Balance");
                 Console.WriteLine("5. Transfer Amount");
                 Console.WriteLine("6. Check Bank Users");
-                Console.WriteLine("7. <your 2nd custom service - choose a name>");
+                Console.WriteLine("7. Delete your Account");
                 Console.WriteLine("8. Exit");
                 Console.Write("Choose an option: ");
 
@@ -56,7 +56,7 @@
                         break;
 
                     case "7":
-                        CustomService2();
+                        DeleteAccount();
                         break;
 
                     default:
@@ -222,9 +222,25 @@
             }
         }
 
-        static void CustomService2()
+        static void DeleteAccount()
         {
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine()!;
 
+            if (!accountNumbers.Contains(accountNumber))
+            {
+                Console.WriteLine("Account number not found. Please try again.");
+                return;
+            }
+
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            customerNames.RemoveAt(accountIndex);
+            accountNumbers.RemoveAt(accountIndex);
+            balances.RemoveAt(accountIndex);
+
+            Console.WriteLine("Account deleted successfully!");
+            Console.WriteLine("-----------------------------------");
         }
     }
 }
