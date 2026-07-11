@@ -173,7 +173,37 @@
 
         static void TransferAmount()
         {
+            Console.Write("Enter account number (sender): ");
+            string senderNumber = Console.ReadLine()!;
 
+            Console.Write("Enter account number (receiver): ");
+            string receiverNumber = Console.ReadLine()!;
+
+            if (!accountNumbers.Contains(senderNumber) || !accountNumbers.Contains(receiverNumber))
+            {
+                Console.WriteLine("One or both account numbers not found. Please try again.");
+                return;
+            }
+
+            int senderIndex = accountNumbers.IndexOf(senderNumber);
+            int receiverIndex = accountNumbers.IndexOf(receiverNumber);
+
+            Console.Write("Enter amount to transfer: ");
+            double amount = double.Parse(Console.ReadLine()!);
+
+            if (amount <= 0 || amount > balances[senderIndex])
+            {
+                Console.WriteLine("Invalid amount or amount exceeds sender balance.");
+                return;
+            }
+
+            balances[senderIndex] -= amount;
+            balances[receiverIndex] += amount;
+
+            Console.WriteLine("Transfer successful!");
+            Console.WriteLine("Sender New Balance: " + balances[senderIndex]);
+            Console.WriteLine("Receiver New Balance: " + balances[receiverIndex]);
+            Console.WriteLine("-----------------------------------");
         }
 
         static void CustomService1()
