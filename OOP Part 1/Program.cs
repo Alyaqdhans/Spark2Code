@@ -592,5 +592,51 @@
 
             Console.WriteLine("The student is eligible for scholarship.");
         }
+
+        static void FullBalanceTopUpFlow()
+        {
+            Console.Write("Choose an account to top up (1 or 2): ");
+            string accountChoice = Console.ReadLine()!;
+
+            double balance = 0;
+
+            if (accountChoice == "1")
+            {
+                balance = account1.Balance;
+            }
+            else if (accountChoice == "2")
+            {
+                balance = account2.Balance;
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+                return;
+            }
+
+            double topUpAmount = 0;
+
+            if (balance < 50)
+            {
+                Console.WriteLine("Account balance was: " + balance);
+
+                if (accountChoice == "1")
+                {
+                    topUpAmount = 100 - balance;
+                    account1.Deposit(topUpAmount);
+                }
+                else if (accountChoice == "2")
+                {
+                    topUpAmount = 100 - balance;
+                    account2.Deposit(topUpAmount);
+                }
+
+                Console.WriteLine("Account balance is: " + (balance + topUpAmount));
+            }
+            else
+            {
+                Console.WriteLine("No top-up is needed.");
+            }
+        }
     }
 }
