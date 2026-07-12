@@ -68,6 +68,9 @@
         private string email;
         int age;
 
+        static int totalStudents = 1;
+        int pin;
+
         public void Register(string Email)
         {
             email = Email;
@@ -79,11 +82,15 @@
             Console.WriteLine("Email sent to account holder.");
         }
 
-        static int totalStudents = 1;
-
         public static int studentCount()
         {
             return totalStudents;
+        }
+
+        public void setSecurityPIN(int Pin)
+        {
+            pin = Pin;
+            Console.WriteLine("Security PIN set successfully.");
         }
     }
 
@@ -703,6 +710,29 @@
             else
             {
                 Console.WriteLine("The account is NOT overdrawn.");
+            }
+        }
+
+        static void SetStudentSecurityPIN()
+        {
+            Console.Write("Choose a student to set security PIN (1 or 2): ");
+            string studentChoice = Console.ReadLine()!;
+
+            Console.Write("Enter new security PIN: ");
+            int pin = int.Parse(Console.ReadLine()!);
+
+            if (studentChoice == "1")
+            {
+                student1.setSecurityPIN(pin);
+
+            }
+            else if (studentChoice == "2")
+            {
+                student2.setSecurityPIN(pin);
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
             }
         }
     }
