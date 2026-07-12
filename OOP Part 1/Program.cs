@@ -131,9 +131,19 @@
 
     internal class Program
     {
+
+        static BankAccount account1 = new BankAccount { AccountNumber = 1163, HolderName = "Karim", Balance = 120};
+        static BankAccount account2 = new BankAccount { AccountNumber = 15203, HolderName = "Ali", Balance = 63 };
+
+        static Student student1 = new Student { Name = "Ali", Address = "Muscat", Grade = 65 };
+        static Student student2 = new Student { Name = "Ahmed", Address = "Salalah", Grade = 70 };
+
+        static Product product1 = new Product { ProductName = "Wireless Mouse", Price = 5.500, StockQuantity = 50 };
+        static Product product2 = new Product { ProductName = "Mechanical Keyboard", Price = 15.750, StockQuantity = 20 };
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            
         }
     }
 }
