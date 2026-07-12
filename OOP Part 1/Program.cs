@@ -143,7 +143,48 @@
 
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("\n===== OOP Part 1 - Bank / Student / Product Manager =====");
+            Console.WriteLine(" 1. View Account Details");
+            Console.WriteLine(" 2. Update Student Address");
+            Console.WriteLine(" 3. Make a Deposit");
+            Console.WriteLine(" 4. Make a Withdrawal");
+            Console.WriteLine(" 5. View Product Details");
+            Console.WriteLine(" 6. Register a Student");
+            Console.WriteLine(" 7. Compare Two Account Balances");
+            Console.WriteLine(" 8. Restock Product & Stock Level Check");
+            Console.WriteLine(" 9. Transfer Between Accounts");
+            Console.WriteLine("10. Update Student Grade (Validated)");
+            Console.WriteLine("11. Student Report Card");
+            Console.WriteLine("12. Account Health Status");
+            Console.WriteLine("13. Bulk Sale With Revenue Calculation");
+            Console.WriteLine("14. Scholarship Eligibility Check");
+            Console.WriteLine("15. Full Balance Top-Up Flow");
+            Console.WriteLine("16. Quick Account Opening (Parameterized Constructor)");
+            Console.WriteLine("17. Total Students Counter (Static Field & Method)");
+            Console.WriteLine("18. Overdrawn Account Check (Read-Only Property)");
+            Console.WriteLine("19. Set Student Security PIN (Write-Only Property)");
+            Console.WriteLine("20. Exit");
+
+            Console.Write("Choose an option: ");
+            string choice = Console.ReadLine()!;
+
+            while (true)
+            {
+                if (choice == "20")
+                {
+                    Console.WriteLine("Exiting the program.");
+                    break;
+                }
+
+                switch (choice)
+                {
+                    
+                }
+
+                Console.Write("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
     }
 }
