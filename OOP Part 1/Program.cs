@@ -350,5 +350,27 @@
                 Console.WriteLine("Both accounts have the same balance.");
             }
         }
+
+        static void RestockProduct()
+        {
+            Console.Write("Choose a product to restock (1 or 2): ");
+            string restockChoice = Console.ReadLine()!;
+
+            Console.Write("Enter quantity to restock: ");
+            int restockQuantity = int.Parse(Console.ReadLine()!);
+
+            if (restockChoice == "1")
+            {
+                product1.Restock(restockQuantity);
+            }
+            else if (restockChoice == "2")
+            {
+                product2.Restock(restockQuantity);
+            }
+            else
+            {
+                Console.WriteLine("Invalid product choice.");
+            }
+        }
     }
 }
