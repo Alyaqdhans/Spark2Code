@@ -478,5 +478,40 @@
             if (studentGrade >= 60) Console.WriteLine("Pass");
             else Console.WriteLine("Fail");
         }
+
+        static void AccountHealthStatus()
+        {
+            Console.Write("Choose an account to check health status (1 or 2): ");
+            string accountChoice = Console.ReadLine()!;
+
+            double balance = 0;
+
+            if (accountChoice == "1")
+            {
+                balance = account1.Balance;
+            }
+            else if (accountChoice == "2")
+            {
+                balance = account2.Balance;
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+                return;
+            }
+
+            if (balance < 50)
+            {
+                Console.WriteLine("Low Balance");
+            }
+            else if (balance >= 50 && balance <= 1000)
+            {
+                Console.WriteLine("Healthy");
+            }
+            else
+            {
+                Console.WriteLine("Premium");
+            }
+        }
     }
 }
