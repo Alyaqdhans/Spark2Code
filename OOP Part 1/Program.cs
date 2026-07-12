@@ -6,6 +6,13 @@
         public string HolderName;
         public double Balance;
 
+        public BankAccount(int accountNumber, string holderName, double balance)
+        {
+            AccountNumber = accountNumber;
+            HolderName = holderName;
+            Balance = balance;
+        }
+
         public void Deposit(double amount)
         {
             if (amount <= 0)
@@ -132,8 +139,8 @@
     internal class Program
     {
 
-        static BankAccount account1 = new BankAccount { AccountNumber = 1163, HolderName = "Karim", Balance = 120 };
-        static BankAccount account2 = new BankAccount { AccountNumber = 15203, HolderName = "Ali", Balance = 63 };
+        static BankAccount account1 = new BankAccount(1163, "Karim", 120);
+        static BankAccount account2 = new BankAccount(15203, "Ali", 63);
 
         static Student student1 = new Student { Name = "Ali", Address = "Muscat", Grade = 65 };
         static Student student2 = new Student { Name = "Ahmed", Address = "Salalah", Grade = 70 };
@@ -637,6 +644,23 @@
             {
                 Console.WriteLine("No top-up is needed.");
             }
+        }
+
+        static void QuickAccountOpening()
+        {
+            Console.Write("Enter account number: ");
+            int accountNumber = int.Parse(Console.ReadLine()!);
+
+            Console.Write("Enter holder name: ");
+            string holderName = Console.ReadLine()!;
+
+            Console.Write("Enter initial balance: ");
+            double balance = double.Parse(Console.ReadLine()!);
+
+            BankAccount newAccount = new BankAccount(accountNumber, holderName, balance);
+            newAccount.CheckBalance();
+
+            Console.WriteLine("New account created successfully.");
         }
     }
 }
