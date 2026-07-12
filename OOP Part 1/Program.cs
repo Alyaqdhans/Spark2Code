@@ -359,17 +359,34 @@
             Console.Write("Enter quantity to restock: ");
             int restockQuantity = int.Parse(Console.ReadLine()!);
 
+            int currentStock = 0;
+
             if (restockChoice == "1")
             {
                 product1.Restock(restockQuantity);
+                currentStock = product1.StockQuantity;
             }
             else if (restockChoice == "2")
             {
                 product2.Restock(restockQuantity);
+                currentStock = product2.StockQuantity;
             }
             else
             {
                 Console.WriteLine("Invalid product choice.");
+            }
+
+            if (currentStock < 10)
+            {
+                Console.WriteLine("Low");
+            }
+            else if (currentStock >= 10 && currentStock <= 49)
+            {
+                Console.WriteLine("Medium");
+            }
+            else
+            {
+                Console.WriteLine("Well Stocked");
             }
         }
     }
