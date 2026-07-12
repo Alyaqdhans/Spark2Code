@@ -13,6 +13,11 @@
             Balance = balance;
         }
 
+        public bool BrokeAccount()
+        {
+            return (Balance < 0);
+        }
+
         public void Deposit(double amount)
         {
             if (amount <= 0)
@@ -30,12 +35,6 @@
             if (amount <= 0)
             {
                 Console.WriteLine("Invalid withdrawal amount.");
-                return;
-            }
-
-            if (amount > Balance)
-            {
-                Console.WriteLine("Insufficient funds.");
                 return;
             }
 
@@ -674,6 +673,37 @@
         {
             int total = Student.studentCount();
             Console.WriteLine("Total number of students: " + total);
+        }
+
+        static void OverdrawnAccountCheck()
+        {
+            Console.Write("Choose an account to check (1 or 2): ");
+            string accountChoice = Console.ReadLine()!;
+
+            bool overDrawn;
+
+            if (accountChoice == "1")
+            {
+                overDrawn = account1.BrokeAccount();
+            }
+            else if (accountChoice == "2")
+            {
+                overDrawn = account2.BrokeAccount();
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+                return;
+            }
+
+            if (overDrawn)
+            {
+                Console.WriteLine("The account is overdrawn.");
+            }
+            else
+            {
+                Console.WriteLine("The account is NOT overdrawn.");
+            }
         }
     }
 }
