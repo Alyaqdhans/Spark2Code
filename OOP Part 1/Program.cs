@@ -132,7 +132,7 @@
     internal class Program
     {
 
-        static BankAccount account1 = new BankAccount { AccountNumber = 1163, HolderName = "Karim", Balance = 120};
+        static BankAccount account1 = new BankAccount { AccountNumber = 1163, HolderName = "Karim", Balance = 120 };
         static BankAccount account2 = new BankAccount { AccountNumber = 15203, HolderName = "Ali", Balance = 63 };
 
         static Student student1 = new Student { Name = "Ali", Address = "Muscat", Grade = 65 };
@@ -178,132 +178,176 @@
 
                 switch (choice)
                 {
-                    case "1":
-                        Console.Write("Choose an account to view details (1 or 2): ");
-                        string accountChoice = Console.ReadLine()!;
-
-                        if (accountChoice == "1")
-                        {
-                            account1.CheckBalance();
-                        }
-                        else if (accountChoice == "2")
-                        {
-                            account2.CheckBalance();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid account choice.");
-                        }
-                        break;
-
-                    case "2":
-                        Console.Write("Choose a student to update address (1 or 2): ");
-                        string studentChoice = Console.ReadLine()!;
-
-                        Console.Write($"Enter new address for Student {studentChoice}: ");
-
-                        if (studentChoice == "1")
-                        {
-                            student1.Address = Console.ReadLine()!;
-                            Console.WriteLine("Address updated successfully.");
-                        }
-                        else if (studentChoice == "2")
-                        {
-                            student2.Address = Console.ReadLine()!;
-                            Console.WriteLine("Address updated successfully.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid student choice.");
-                        }
-                        break;
-
-                    case "3":
-                        Console.Write("Choose an account to deposit into (1 or 2): ");
-                        string depositChoice = Console.ReadLine()!;
-
-                        Console.Write("Enter deposit amount: ");
-                        double depositAmount = double.Parse(Console.ReadLine()!);
-
-                        if (depositChoice == "1")
-                        {
-                            account1.Deposit(depositAmount);
-                        }
-                        else if (depositChoice == "2")
-                        {
-                            account2.Deposit(depositAmount);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid account choice.");
-                        }
-                        break;
-
-                    case "4":
-                        Console.Write("Choose an account to withdraw from (1 or 2): ");
-                        string withdrawChoice = Console.ReadLine()!;
-
-                        Console.Write("Enter withdrawal amount: ");
-                        double withdrawAmount = double.Parse(Console.ReadLine()!);
-
-                        if (withdrawChoice == "1")
-                        {
-                            account1.Withdraw(withdrawAmount);
-
-                        }
-                        else if (withdrawChoice == "2")
-                        {
-                            account2.Withdraw(withdrawAmount);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid account choice.");
-                        }
-                        break;
-
-                    case "5":
-                        Console.Write("Choose a product to view details (1 or 2): ");
-                        string productChoice = Console.ReadLine()!;
-
-                        if (productChoice == "1")
-                        {
-                            product1.GetInventoryValue();
-                        }
-                        else if (productChoice == "2")
-                        {
-                            product2.GetInventoryValue();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid product choice.");
-                        }
-                        break;
-
-                    case "6":
-                        Console.Write("Choose a student to register (1 or 2): ");
-                        string registerChoice = Console.ReadLine()!;
-
-                        Console.Write("Enter email for registration: ");
-                        string email = Console.ReadLine()!;
-
-                        if (registerChoice == "1")
-                        {
-                            student1.Register(email);
-                        }
-                        else if (registerChoice == "2")
-                        {
-                            student2.Register(email);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid student choice.");
-                        }
-                        break;
+                    case "1": ViewAccountDetails(); break;
+                    case "2": UpdateStudentAddress(); break;
+                    case "3": MakeDeposit(); break;
+                    case "4": MakeWithdrawal(); break;
+                    case "5": ViewProductDetails(); break;
+                    case "6": RegisterStudent(); break;
+                    case "7": CompareAccountBalances(); break;
+                    case "8": RestockProduct(); break;
+                    case "9": TransferBetweenAccounts(); break;
+                    case "10": UpdateStudentGrade(); break;
+                    case "11": StudentReportCard(); break;
+                    case "12": AccountHealthStatus(); break;
+                    case "13": BulkSaleWithRevenue(); break;
+                    case "14": ScholarshipEligibilityCheck(); break;
+                    case "15": FullBalanceTopUpFlow(); break;
+                    case "16": QuickAccountOpening(); break;
+                    case "17": TotalStudentsCounter(); break;
+                    case "18": OverdrawnAccountCheck(); break;
+                    case "19": SetStudentSecurityPIN(); break;
+                    default: Console.WriteLine("Invalid choice. Please try again."); break;
                 }
 
                 Console.Write("Press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
+            }
+        }
+
+        static void ViewAccountDetails()
+        {
+            Console.Write("Choose an account to view details (1 or 2): ");
+            string accountChoice = Console.ReadLine()!;
+
+            if (accountChoice == "1")
+            {
+                account1.CheckBalance();
+            }
+            else if (accountChoice == "2")
+            {
+                account2.CheckBalance();
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+            }
+        }
+
+        static void UpdateStudentAddress()
+        {
+            Console.Write("Choose a student to update address (1 or 2): ");
+            string studentChoice = Console.ReadLine()!;
+
+            Console.Write($"Enter new address for Student {studentChoice}: ");
+
+            if (studentChoice == "1")
+            {
+                student1.Address = Console.ReadLine()!;
+                Console.WriteLine("Address updated successfully.");
+            }
+            else if (studentChoice == "2")
+            {
+                student2.Address = Console.ReadLine()!;
+                Console.WriteLine("Address updated successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
+            }
+        }
+
+        static void MakeDeposit()
+        {
+            Console.Write("Choose an account to deposit into (1 or 2): ");
+            string depositChoice = Console.ReadLine()!;
+
+            Console.Write("Enter deposit amount: ");
+            double depositAmount = double.Parse(Console.ReadLine()!);
+
+            if (depositChoice == "1")
+            {
+                account1.Deposit(depositAmount);
+            }
+            else if (depositChoice == "2")
+            {
+                account2.Deposit(depositAmount);
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+            }
+        }
+
+        static void MakeWithdrawal()
+        {
+            Console.Write("Choose an account to withdraw from (1 or 2): ");
+            string withdrawChoice = Console.ReadLine()!;
+
+            Console.Write("Enter withdrawal amount: ");
+            double withdrawAmount = double.Parse(Console.ReadLine()!);
+
+            if (withdrawChoice == "1")
+            {
+                account1.Withdraw(withdrawAmount);
+
+            }
+            else if (withdrawChoice == "2")
+            {
+                account2.Withdraw(withdrawAmount);
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+            }
+        }
+
+        static void ViewProductDetails()
+        {
+            Console.Write("Choose a product to view details (1 or 2): ");
+            string productChoice = Console.ReadLine()!;
+
+            if (productChoice == "1")
+            {
+                product1.GetInventoryValue();
+            }
+            else if (productChoice == "2")
+            {
+                product2.GetInventoryValue();
+            }
+            else
+            {
+                Console.WriteLine("Invalid product choice.");
+            }
+        }
+
+        static void RegisterStudent()
+        {
+            Console.Write("Choose a student to register (1 or 2): ");
+            string registerChoice = Console.ReadLine()!;
+
+            Console.Write("Enter email for registration: ");
+            string email = Console.ReadLine()!;
+
+            if (registerChoice == "1")
+            {
+                student1.Register(email);
+            }
+            else if (registerChoice == "2")
+            {
+                student2.Register(email);
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
+            }
+        }
+
+        static void CompareAccountBalances()
+        {
+            Console.WriteLine("Comparing account balances:");
+            if (account1.Balance > account2.Balance)
+            {
+                Console.WriteLine("Account 1 has a higher balance");
+            }
+            else if (account1.Balance < account2.Balance)
+            {
+                Console.WriteLine("Account 2 has a higher balance");
+            }
+            else
+            {
+                Console.WriteLine("Both accounts have the same balance.");
             }
         }
     }
