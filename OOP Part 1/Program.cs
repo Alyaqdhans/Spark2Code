@@ -217,6 +217,27 @@
                             Console.WriteLine("Invalid student choice.");
                         }
                         break;
+
+                    case "3":
+                        Console.Write("Choose an account to deposit into (1 or 2): ");
+                        string depositChoice = Console.ReadLine()!;
+
+                        Console.Write("Enter deposit amount: ");
+                        double depositAmount = Convert.ToDouble(Console.ReadLine()!);
+
+                        if (depositChoice == "1")
+                        {
+                            account1.Deposit(depositAmount);
+                        }
+                        else if (depositChoice == "2")
+                        {
+                            account2.Deposit(depositAmount);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid account choice.");
+                        }
+                        break;
                 }
 
                 Console.Write("Press any key to continue...");
