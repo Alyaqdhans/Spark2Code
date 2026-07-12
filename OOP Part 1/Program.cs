@@ -278,6 +278,27 @@
                             Console.WriteLine("Invalid product choice.");
                         }
                         break;
+
+                    case "6":
+                        Console.Write("Choose a student to register (1 or 2): ");
+                        string registerChoice = Console.ReadLine()!;
+
+                        Console.Write("Enter email for registration: ");
+                        string email = Console.ReadLine()!;
+
+                        if (registerChoice == "1")
+                        {
+                            student1.Register(email);
+                        }
+                        else if (registerChoice == "2")
+                        {
+                            student2.Register(email);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid student choice.");
+                        }
+                        break;
                 }
 
                 Console.Write("Press any key to continue...");
