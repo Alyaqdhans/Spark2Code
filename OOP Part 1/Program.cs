@@ -74,6 +74,61 @@
         }
     }
 
+    class Product
+    {
+        public string ProductName;
+        public double Price;
+        public int StockQuantity;
+
+        public void Sell(int quantity)
+        {
+            if (quantity <= 0)
+            {
+                Console.WriteLine("Invalid quantity.");
+                return;
+            }
+
+            if (quantity > StockQuantity)
+            {
+                Console.WriteLine("Not enough stock.");
+                return;
+            }
+
+            StockQuantity -= quantity;
+            LogTransaction();
+        }
+
+        public void Restock(int quantity)
+        {
+            if (quantity <= 0)
+            {
+                Console.WriteLine("Invalid quantity.");
+                return;
+            }
+
+            StockQuantity += quantity;
+            LogTransaction();
+        }
+
+        public double GetInventoryValue()
+        {
+            PrintDetails();
+            return Price * StockQuantity;
+        }
+
+        private void PrintDetails()
+        {
+            Console.WriteLine("Product Name: " + ProductName);
+            Console.WriteLine("Price: " + Price);
+            Console.WriteLine("Stock Quantity: " + StockQuantity);
+        }
+
+        private void LogTransaction()
+        {
+            Console.WriteLine("Transaction logged.");
+        }
+    }
+
     internal class Program
     {
         static void Main(string[] args)
