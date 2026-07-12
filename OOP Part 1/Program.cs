@@ -178,7 +178,23 @@
 
                 switch (choice)
                 {
-                    
+                    case "1":
+                        Console.WriteLine("Choose an account to view details (1 or 2): ");
+                        string accountChoice = Console.ReadLine()!;
+
+                        if (accountChoice == "1")
+                        {
+                            account1.CheckBalance();
+                        }
+                        else if (accountChoice == "2")
+                        {
+                            account2.CheckBalance();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid account choice.");
+                        }
+                        break;
                 }
 
                 Console.Write("Press any key to continue...");
