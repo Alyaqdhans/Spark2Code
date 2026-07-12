@@ -544,7 +544,7 @@
                 Console.WriteLine($"Not enough stock for the sale, {saleQuantity - quantity} more is needed to fulfill the order.");
                 return;
             }
-            
+
             if (productChoice == "1")
             {
                 product1.Sell(saleQuantity);
@@ -557,6 +557,40 @@
             }
 
             Console.WriteLine("Total revenue from the sale: " + revenue);
+        }
+
+        static void ScholarshipEligibilityCheck()
+        {
+            Console.Write("Choose a student (1 or 2): ");
+            string studentChoice = Console.ReadLine()!;
+
+            Console.Write("Choose a bank account (1 or 2): ");
+            string accountChoice = Console.ReadLine()!;
+
+            if (studentChoice == "1" && student1.Grade < 80)
+            {
+                Console.WriteLine("Student 1 is not eligible for scholarship due to low grade.");
+                return;
+
+            }
+            else if (studentChoice == "2" && student2.Grade < 80)
+            {
+                Console.WriteLine("Student 2 is not eligible for scholarship due to low grade.");
+                return;
+            }
+
+            if (accountChoice == "1" && account1.Balance < 100)
+            {
+                Console.WriteLine("Student 1 is not eligible for scholarship due to low account balance.");
+                return;
+            }
+            else if (accountChoice == "2" && account2.Balance < 100)
+            {
+                Console.WriteLine("Student 2 is not eligible for scholarship due to low account balance.");
+                return;
+            }
+
+            Console.WriteLine("The student is eligible for scholarship.");
         }
     }
 }
