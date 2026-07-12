@@ -79,6 +79,13 @@
         {
             Console.WriteLine("Email sent to account holder.");
         }
+
+        static int totalStudents = 1;
+
+        public static int studentCount()
+        {
+            return totalStudents;
+        }
     }
 
     class Product
@@ -661,6 +668,12 @@
             newAccount.CheckBalance();
 
             Console.WriteLine("New account created successfully.");
+        }
+
+        static void TotalStudentsCounter()
+        {
+            int total = Student.studentCount();
+            Console.WriteLine("Total number of students: " + total);
         }
     }
 }
