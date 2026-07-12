@@ -445,5 +445,38 @@
                 Console.WriteLine("Invalid student choice.");
             }
         }
+
+        static void StudentReportCard()
+        {
+            Console.Write("Choose a student to view report card (1 or 2): ");
+            string studentChoice = Console.ReadLine()!;
+
+            string studentName = "";
+            string studentAddress = "";
+            int studentGrade = 0;
+
+            if (studentChoice == "1")
+            {
+                studentName = student1.Name;
+                studentAddress = student1.Address;
+                studentGrade = student1.Grade;
+            }
+            else if (studentChoice == "2")
+            {
+                studentName = student2.Name;
+                studentAddress = student2.Address;
+                studentGrade = student2.Grade;
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
+            }
+
+            Console.WriteLine("Student Name: " + studentName);
+            Console.WriteLine("Address: " + studentAddress);
+            Console.WriteLine("Grade: " + studentGrade);
+            if (studentGrade >= 60) Console.WriteLine("Pass");
+            else Console.WriteLine("Fail");
+        }
     }
 }
