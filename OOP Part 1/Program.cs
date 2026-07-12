@@ -416,5 +416,34 @@
                 Console.WriteLine("Insufficient funds for transfer.");
             }
         }
+
+        static void UpdateStudentGrade()
+        {
+            Console.Write("Choose a student to update grade (1 or 2): ");
+            string studentChoice = Console.ReadLine()!;
+
+            Console.Write("Enter new grade (0-100): ");
+            int newGrade = int.Parse(Console.ReadLine()!);
+
+            if (newGrade < 0 || newGrade > 100)
+            {
+                Console.WriteLine("Invalid grade. Please enter a value between 0 and 100.");
+                return;
+            }
+            if (studentChoice == "1")
+            {
+                student1.Grade = newGrade;
+                Console.WriteLine("Grade updated successfully.");
+            }
+            else if (studentChoice == "2")
+            {
+                student2.Grade = newGrade;
+                Console.WriteLine("Grade updated successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
+            }
+        }
     }
 }
