@@ -260,6 +260,24 @@
                             Console.WriteLine("Invalid account choice.");
                         }
                         break;
+
+                    case "5":
+                        Console.Write("Choose a product to view details (1 or 2): ");
+                        string productChoice = Console.ReadLine()!;
+
+                        if (productChoice == "1")
+                        {
+                            product1.GetInventoryValue();
+                        }
+                        else if (productChoice == "2")
+                        {
+                            product2.GetInventoryValue();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid product choice.");
+                        }
+                        break;
                 }
 
                 Console.Write("Press any key to continue...");
