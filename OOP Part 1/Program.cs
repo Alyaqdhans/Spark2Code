@@ -42,13 +42,33 @@
             return Balance;
         }
 
-        void PrintInformation()
+        private void PrintInformation()
         {
             Console.WriteLine($"Holder Name: {HolderName}");
             Console.WriteLine($"Balance: {Balance}");
         }
 
-        void SendEmail()
+        private void SendEmail()
+        {
+            Console.WriteLine("Email sent to account holder.");
+        }
+    }
+
+    class Student
+    {
+        public int Grade;
+        public string Name;
+        public string Address;
+        private string email;
+        int age;
+
+        public void Register(string Email)
+        {
+            email = Email;
+            SendEmail();
+        }
+
+        private void SendEmail()
         {
             Console.WriteLine("Email sent to account holder.");
         }
