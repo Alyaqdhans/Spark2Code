@@ -389,5 +389,32 @@
                 Console.WriteLine("Well Stocked");
             }
         }
+
+        static void TransferBetweenAccounts()
+        {
+            Console.Write("Enter a source account number (1 or 2): ");
+            string sourceChoice = Console.ReadLine()!;
+
+            Console.Write("Enter a destination account number (1 or 2): ");
+            string destinationChoice = Console.ReadLine()!;
+
+            Console.Write("Enter transfer amount: ");
+            double transferAmount = double.Parse(Console.ReadLine()!);
+
+            if (sourceChoice == "1" && transferAmount <= account1.Balance)
+            {
+                account1.Withdraw(transferAmount);
+                account2.Deposit(transferAmount);
+            }
+            else if (sourceChoice == "2" && transferAmount <= account2.Balance)
+            {
+                account2.Withdraw(transferAmount);
+                account1.Deposit(transferAmount);
+            }
+            else
+            {
+                Console.WriteLine("Insufficient funds for transfer.");
+            }
+        }
     }
 }
