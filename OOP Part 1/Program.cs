@@ -513,5 +513,50 @@
                 Console.WriteLine("Premium");
             }
         }
+
+        static void BulkSaleWithRevenue()
+        {
+            Console.Write("Choose a product for bulk sale (1 or 2): ");
+            string productChoice = Console.ReadLine()!;
+
+            Console.Write("Enter quantity to sell: ");
+            int saleQuantity = int.Parse(Console.ReadLine()!);
+
+            double revenue = 0;
+            int quantity = 0;
+
+            if (productChoice == "1")
+            {
+                quantity = product1.StockQuantity;
+            }
+            else if (productChoice == "2")
+            {
+                quantity = product2.StockQuantity;
+            }
+            else
+            {
+                Console.WriteLine("Invalid product choice.");
+                return;
+            }
+
+            if (saleQuantity > quantity)
+            {
+                Console.WriteLine($"Not enough stock for the sale, {saleQuantity - quantity} more is needed to fulfill the order.");
+                return;
+            }
+            
+            if (productChoice == "1")
+            {
+                product1.Sell(saleQuantity);
+                revenue = saleQuantity * product1.Price;
+            }
+            else if (productChoice == "2")
+            {
+                product2.Sell(saleQuantity);
+                revenue = saleQuantity * product2.Price;
+            }
+
+            Console.WriteLine("Total revenue from the sale: " + revenue);
+        }
     }
 }
