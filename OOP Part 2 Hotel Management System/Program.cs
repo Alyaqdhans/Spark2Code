@@ -1,4 +1,6 @@
-﻿namespace OOP_Part_2_Hotel_Management_System
+﻿using static System.Net.WebRequestMethods;
+
+namespace OOP_Part_2_Hotel_Management_System
 {
     class Room
     {
@@ -249,7 +251,108 @@
 
         static void SearchAndFilterRooms()
         {
+            while (true)
+            {
+                Console.WriteLine("Search & Filter Rooms:");
+                Console.WriteLine("1. Show all available rooms");
+                Console.WriteLine("2. Filter by room type");
+                Console.WriteLine("3. Filter by max price");
+                Console.WriteLine("4. Room price statistics");
+                Console.WriteLine("0. Back");
 
+                Console.Write("Enter your choice: ");
+                string choice = Console.ReadLine()!;
+
+                if (choice == "0")
+                {
+                    Console.WriteLine("Returning to main menu...");
+                    break;
+                }
+
+                switch (choice)
+                {
+                    case "1":
+                        List<Room> availableRooms = rooms.Where(r => r.isAvailable)
+                                                         .OrderBy(r => r.pricePerNight)
+                                                         .ToList();
+                        if (availableRooms.Count == 0)
+                        {
+                            Console.WriteLine("No available rooms.");
+                            break;
+                        }
+
+                        Console.WriteLine($"Available Rooms ({availableRooms.Count}):");
+                        foreach (Room room in availableRooms)
+                        {
+                            room.displayRoom();
+                            Console.WriteLine("--------------------");
+                        }
+                        break;
+
+                    case "2":
+                        Console.Write("Enter room type to filter (Single/Double/Suite): ");
+                        string roomType = Console.ReadLine()!;
+
+                        List<Room> filteredRooms = rooms.Where(r => r.roomType == roomType).ToList();
+
+                        if (filteredRooms.Count == 0)
+                        {
+                            Console.WriteLine("No available rooms.");
+                            break;
+                        }
+
+                        Console.WriteLine($"Rooms of type {roomType} ({filteredRooms.Count}):");
+                        foreach (Room room in filteredRooms)
+                        {
+                            room.displayRoom();
+                            Console.WriteLine("--------------------");
+                        }
+                        break;
+
+                    case "3":
+                        Console.Write("Enter max price to filter: ");
+                        double maxPrice = double.Parse(Console.ReadLine()!);
+
+                        List<Room> filteredByPrice = rooms.Where(r => r.pricePerNight <= maxPrice).ToList();
+
+                        if (filteredByPrice.Count == 0)
+                        {
+                            Console.WriteLine("No available rooms.");
+                            break;
+                        }
+
+                        Console.WriteLine($"Rooms with price <= {maxPrice} ({filteredByPrice.Count}):");
+                        foreach (Room room in filteredByPrice)
+                        {
+                            room.displayRoom();
+                            Console.WriteLine("--------------------");
+                        }
+                        break;
+
+                    case "4":
+                        if (rooms.Count == 0)
+                        {
+                            Console.WriteLine("No rooms have been added yet.");
+                            break;
+                        }
+
+                        Console.WriteLine("Room Price Statistics:");
+                        Console.WriteLine("Total Rooms: " + rooms.Count);
+                        Console.WriteLine("Available Rooms: " + rooms.Where(r => r.isAvailable).ToList().Count);
+                        Console.WriteLine("Average Price: " + rooms.Average(r => r.pricePerNight));
+                        Console.WriteLine("Cheapest Price: " + rooms.Min(r => r.pricePerNight));
+                        Console.WriteLine("Most Expensive Price: " + rooms.Max(r => r.pricePerNight));
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+
+                Console.Write("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
 
         static void GuestAndBookingStatistics()
