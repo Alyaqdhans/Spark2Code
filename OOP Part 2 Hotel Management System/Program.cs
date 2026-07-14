@@ -172,7 +172,36 @@
 
         static void BookRoomForGuest()
         {
+            Console.Write("Enter Guest ID: ");
+            string guestId = Console.ReadLine()!;
 
+            Console.Write("Enter Room Number: ");
+            string roomNumber = Console.ReadLine()!;
+
+            Guest guest = guests.FirstOrDefault(g => g.guestId == guestId)!;
+            Room room = rooms.FirstOrDefault(r => r.roomNumber == roomNumber)!;
+
+            if (guest == null || room == null)
+            {
+                Console.WriteLine("Guest or Room not found.");
+                return;
+            }
+
+            if (room.isAvailable == false)
+            {
+                Console.WriteLine("Room is already booked.");
+                return;
+            }
+
+            guest.roomNumber = room.roomNumber;
+            room.isAvailable = false;
+
+            Console.WriteLine("Room booked sucessfully.");
+            Console.WriteLine("Guest Name: " + guest.guestName);
+            Console.WriteLine("Room Number: " + room.roomNumber);
+            Console.WriteLine("Room Type: " + room.roomType);
+            Console.WriteLine("Price Per Night: " + room.pricePerNight);
+            guest.calculateTotalCost(room.pricePerNight);
         }
 
         static void ViewAllRooms()
