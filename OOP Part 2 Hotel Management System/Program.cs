@@ -1,4 +1,8 @@
-﻿namespace OOP_Part_2_Hotel_Management_System
+﻿using Microsoft.Win32;
+using System.Xml.Linq;
+using static System.Net.WebRequestMethods;
+
+namespace OOP_Part_2_Hotel_Management_System
 {
     class Room
     {
@@ -61,7 +65,144 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            List<Room> rooms = new List<Room>();
+            List<Guest> list = new List<Guest>();
+
+            Console.WriteLine("================================================");
+            Console.WriteLine("GRAND VISTA HOTEL — MANAGEMENT SYSTEM");
+            Console.WriteLine("================================================");
+            Console.WriteLine("1. Add New Room");
+            Console.WriteLine("2. Register New Guest");
+            Console.WriteLine("3. Book a Room for a Guest");
+            Console.WriteLine("4. View All Rooms");
+            Console.WriteLine("5. View All Guests");
+            Console.WriteLine("6. Search & Filter Rooms");
+            Console.WriteLine("7. Guest & Booking Statistics");
+            Console.WriteLine("8. Update Room Price");
+            Console.WriteLine("9. Guest Lookup by Name");
+            Console.WriteLine("10. Room Type Breakdown Report");
+            Console.WriteLine("11. Check Out a Guest");
+            Console.WriteLine("12. Remove Unavailable Rooms");
+            Console.WriteLine("13. Extend Guest Stay");
+            Console.WriteLine("14. Highest Revenue Booking");
+            Console.WriteLine("15. Guest Pagination Viewer");
+            Console.WriteLine("0. Exit");
+
+            Console.Write("Enter your choice: ");
+            string choice = Console.ReadLine()!;
+
+            while (true)
+            {
+                if (choice == "0")
+                {
+                    Console.WriteLine("Exiting the program...");
+                    break;
+                }
+
+                switch (choice)
+                {
+                    case "1": AddNewRoom(); break;
+                    case "2": RegisterNewGuest(); break;
+                    case "3": BookRoomForGuest(); break;
+                    case "4": ViewAllRooms(); break;
+                    case "5": ViewAllGuests(); break;
+                    case "6": SearchAndFilterRooms(); break;
+                    case "7": GuestAndBookingStatistics(); break;
+                    case "8": UpdateRoomPrice(); break;
+                    case "9": GuestLookupByName(); break;
+                    case "10": RoomTypeBreakdownReport(); break;
+                    case "11": CheckOutGuest(); break;
+                    case "12": RemoveUnavailableRooms(); break;
+                    case "13": ExtendGuestStay(); break;
+                    case "14": HighestRevenueBooking(); break;
+                    case "15": GuestPaginationViewer(); break;
+                    default: Console.WriteLine("Invalid choice. Please try again."); break;
+                }
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+
+        static void AddNewRoom()
+        {
+
+        }
+
+        static void RegisterNewGuest()
+        {
+
+        }
+
+        static void BookRoomForGuest()
+        {
+
+        }
+
+        static void ViewAllRooms()
+        {
+
+        }
+
+        static void ViewAllGuests()
+        {
+
+        }
+
+        static void ViewAllGuestsCount()
+        {
+
+        }
+
+        static void SearchAndFilterRooms()
+        {
+
+        }
+
+        static void GuestAndBookingStatistics()
+        {
+
+        }
+
+        static void UpdateRoomPrice()
+        {
+
+        }
+
+        static void GuestLookupByName()
+        {
+
+        }
+
+        static void RoomTypeBreakdownReport()
+        {
+
+        }
+
+        static void CheckOutGuest()
+        {
+
+        }
+
+        static void RemoveUnavailableRooms()
+        {
+
+        }
+
+        static void ExtendGuestStay()
+        {
+
+        }
+
+        static void HighestRevenueBooking()
+        {
+
+        }
+
+        static void GuestPaginationViewer()
+        {
+
         }
     }
 }
