@@ -206,15 +206,27 @@
 
         static void ViewAllRooms()
         {
+            List<Room> filteredRooms = rooms.Select(r => new Room(r.roomNumber, r.roomType, r.pricePerNight, r.isAvailable))
+                                            .OrderBy(r => r.roomNumber)
+                                            .ToList();
+            if (filteredRooms.Count == 0)
+            {
+                Console.WriteLine("No rooms have been added yet.");
+                return;
+            }
 
+            Console.WriteLine($"Rooms List ({filteredRooms.Count}): ");
+            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("Room Number | Room Type | Price Per Night | Is Available");
+            foreach (Room room in filteredRooms)
+            {
+                string roomStatus = room.isAvailable ? "Available" : "Booked";
+                Console.WriteLine($"{room.roomNumber} | {room.roomType} | {room.pricePerNight} | {roomStatus}");
+            }
+            Console.WriteLine("------------------------------------------------");
         }
 
         static void ViewAllGuests()
-        {
-
-        }
-
-        static void ViewAllGuestsCount()
         {
 
         }
