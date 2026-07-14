@@ -2,12 +2,12 @@
 {
     class Room
     {
-        public int roomNumber;
+        public string roomNumber;
         public string roomType;
         public double pricePerNight;
         public bool isAvailable;
 
-        public Room(int RoomNumber, string RoomType, double PricePerNight, bool IsAvailable)
+        public Room(string RoomNumber, string RoomType, double PricePerNight, bool IsAvailable)
         {
             roomNumber = RoomNumber;
             roomType = RoomType;
@@ -26,13 +26,13 @@
 
     class Guest
     {
-        public int guestId;
+        public string guestId;
         public string guestName;
-        public int roomNumber;
+        public string roomNumber;
         public string checkInDate;
         public int totalNights;
 
-        public Guest(int GuestId, string GuestName, int RoomNumber, string CheckInDate, int TotalNights)
+        public Guest(string GuestId, string GuestName, string RoomNumber, string CheckInDate, int TotalNights)
         {
             guestId = GuestId;
             guestName = GuestName;
@@ -60,16 +60,16 @@
     internal class Program
     {
         static List<Room> rooms = new List<Room>();
-        static List<Guest> list = new List<Guest>();
+        static List<Guest> guests = new List<Guest>();
 
         static void Main(string[] args)
         {
-            rooms.Add(new Room(101, "Single", 100.0, true));
-            rooms.Add(new Room(102, "Double", 150.0, true));
-            rooms.Add(new Room(103, "Suite", 250.0, true));
-            rooms.Add(new Room(104, "Single", 80.0, false));
-            rooms.Add(new Room(105, "Double", 350.0, true));
-            rooms.Add(new Room(106, "Suite", 550.0, true));
+            rooms.Add(new Room("101", "Single", 100.0, true));
+            rooms.Add(new Room("102", "Double", 150.0, true));
+            rooms.Add(new Room("103", "Suite", 250.0, true));
+            rooms.Add(new Room("104", "Single", 80.0, false));
+            rooms.Add(new Room("105", "Double", 350.0, true));
+            rooms.Add(new Room("106", "Suite", 550.0, true));
 
             while (true)
             {
@@ -131,7 +131,7 @@
         static void AddNewRoom()
         {
             Console.Write("Enter Room Number: ");
-            int roomNumber = int.Parse(Console.ReadLine()!);
+            string roomNumber = Console.ReadLine()!;
 
             Console.Write("Enter Room Type (Single/Double/Suite): ");
             string roomType = Console.ReadLine()!;
@@ -153,7 +153,21 @@
 
         static void RegisterNewGuest()
         {
+            Console.Write("Enter Guest Name: ");
+            string guestName = Console.ReadLine()!;
 
+            Console.Write("Enter check-in date (yyyy-mm-dd): ");
+            string checkInDate = Console.ReadLine()!;
+
+            Console.Write("Enter total nights of stay: ");
+            int totalNights = int.Parse(Console.ReadLine()!);
+
+            string guestId = "G" + (guests.Count + 1).ToString("D3");
+
+            guests.Add(new Guest(guestId, guestName, "Not Assigned", checkInDate, totalNights));
+
+            Console.WriteLine("Guest registered successfully.");
+            guests.FirstOrDefault(g => g.guestId == guestId)!.displayGuest();
         }
 
         static void BookRoomForGuest()
