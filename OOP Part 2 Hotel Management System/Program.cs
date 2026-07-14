@@ -122,7 +122,7 @@
                     default: Console.WriteLine("Invalid choice. Please try again."); break;
                 }
 
-                Console.WriteLine("Press any key to continue...");
+                Console.Write("Press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -228,7 +228,23 @@
 
         static void ViewAllGuests()
         {
+            List<Guest> filteredGuests = guests.Select(g => new Guest(g.guestId, g.guestName, g.roomNumber, g.checkInDate, g.totalNights))
+                                              .OrderBy(g => g.guestId)
+                                              .ToList();
+            if (filteredGuests.Count == 0)
+            {
+                Console.WriteLine("No guests have been registered yet.");
+                return;
+            }
 
+            Console.WriteLine($"Guests List ({filteredGuests.Count}): ");
+            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("Guest ID | Guest Name | Room Number | Check-In Date | Total Nights");
+            foreach (Guest guest in filteredGuests)
+            {
+                Console.WriteLine($"{guest.guestId} | {guest.guestName} | {guest.roomNumber} | {guest.checkInDate} | {guest.totalNights}");
+            }
+            Console.WriteLine("------------------------------------------------");
         }
 
         static void SearchAndFilterRooms()
