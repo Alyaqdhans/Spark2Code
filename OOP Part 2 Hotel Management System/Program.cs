@@ -1,6 +1,4 @@
-﻿using static System.Net.WebRequestMethods;
-
-namespace OOP_Part_2_Hotel_Management_System
+﻿namespace OOP_Part_2_Hotel_Management_System
 {
     class Room
     {
@@ -52,10 +50,9 @@ namespace OOP_Part_2_Hotel_Management_System
             Console.WriteLine($"Total Nights: {totalNights}");
         }
 
-        public void calculateTotalCost(double pricePerNight)
+        public double calculateTotalCost(double pricePerNight)
         {
-            double totalCost = pricePerNight * totalNights;
-            Console.WriteLine($"Total Cost: {totalCost}");
+            return pricePerNight * totalNights;
         }
     }
 
@@ -203,7 +200,8 @@ namespace OOP_Part_2_Hotel_Management_System
             Console.WriteLine("Room Number: " + room.roomNumber);
             Console.WriteLine("Room Type: " + room.roomType);
             Console.WriteLine("Price Per Night: " + room.pricePerNight);
-            guest.calculateTotalCost(room.pricePerNight);
+            double totalCost = guest.calculateTotalCost(room.pricePerNight);
+            Console.WriteLine("Total Cost for Stay: " + totalCost);
         }
 
         static void ViewAllRooms()
@@ -339,9 +337,9 @@ namespace OOP_Part_2_Hotel_Management_System
                         Console.WriteLine("Room Price Statistics:");
                         Console.WriteLine("Total Rooms: " + rooms.Count);
                         Console.WriteLine("Available Rooms: " + rooms.Where(r => r.isAvailable).ToList().Count);
-                        Console.WriteLine("Average Price: " + rooms.Average(r => r.pricePerNight));
-                        Console.WriteLine("Cheapest Price: " + rooms.Min(r => r.pricePerNight));
-                        Console.WriteLine("Most Expensive Price: " + rooms.Max(r => r.pricePerNight));
+                        Console.WriteLine("Average Price: " + rooms.Average(r => r.pricePerNight).ToString("0.00"));
+                        Console.WriteLine("Cheapest Price: " + rooms.Min(r => r.pricePerNight).ToString("0.00"));
+                        Console.WriteLine("Most Expensive Price: " + rooms.Max(r => r.pricePerNight).ToString("0.00"));
                         break;
 
                     default:
@@ -357,7 +355,50 @@ namespace OOP_Part_2_Hotel_Management_System
 
         static void GuestAndBookingStatistics()
         {
+            Console.WriteLine("Guest & Booking Statistics:");
 
+            Console.WriteLine("Total Guests: " + guests.Count);
+            int assignedRooms = guests.Where(g => g.roomNumber != "Not Assigned").ToList().Count;
+            Console.WriteLine("Guests with Assigned Rooms: " + assignedRooms);
+
+            Console.WriteLine("Total Rooms: " + rooms.Count);
+            int bookedRooms = rooms.Where(r => r.isAvailable == false).ToList().Count;
+            Console.WriteLine("Booked Rooms: " + bookedRooms);
+
+            if (guests.Any())
+            {
+                double averageNights = guests.Where(g => g.roomNumber != "Not Assigned")
+                                             .Average(g => g.totalNights);
+                Console.WriteLine("Average Nights of Stay: " + averageNights);
+            }
+
+            List<Guest> spendingGuests = guests.Where(g => g.roomNumber != "Not Assigned")
+                                               .OrderByDescending(g => g.calculateTotalCost(rooms.FirstOrDefault(r => r.roomNumber == g.roomNumber)!.pricePerNight))
+                                               .Take(3).ToList();
+            if (spendingGuests.Any())
+            {
+                Console.WriteLine("Top 3 Guests by Spending:");
+                foreach (Guest guest in spendingGuests)
+                {
+                    double totalCost = guest.calculateTotalCost(rooms.FirstOrDefault(r => r.roomNumber == guest.roomNumber)!.pricePerNight);
+                    Console.WriteLine($"Guest Name: {guest.guestName}, Total Cost: {totalCost.ToString("0.00")}");
+                }
+            }
+
+
+            List<Guest> bookedGuests = guests.Where(g => g.roomNumber != "Not Assigned")
+                                             .Select(g => new Guest(g.guestId, g.guestName, g.roomNumber, g.checkInDate, g.totalNights))
+                                             .ToList();
+            if (bookedGuests.Any())
+            {
+                Console.WriteLine("Summary of booked guests:");
+                Console.WriteLine("Guest Name - Room Number - Total Nights - Total Cost");
+                foreach (Guest guest in bookedGuests)
+                {
+                    double totalCost = guest.calculateTotalCost(rooms.FirstOrDefault(r => r.roomNumber == guest.roomNumber)!.pricePerNight);
+                    Console.WriteLine($"{guest.guestName} - {guest.roomNumber} - {guest.totalNights} - {totalCost.ToString("0.00")}");
+                }
+            }
         }
 
         static void UpdateRoomPrice()
