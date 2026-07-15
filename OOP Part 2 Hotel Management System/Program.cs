@@ -629,7 +629,29 @@
 
         static void GuestPaginationViewer()
         {
+            const int pageSize = 3;
+            int totalGuests = guests.Count();
+            int totalPages = (totalGuests + pageSize - 1) / pageSize;
 
+            Console.Write($"Enter page number (Total pages {totalPages}): ");
+            int pageNumber = int.Parse(Console.ReadLine()!);
+
+            if (pageNumber < 1 || pageNumber > totalPages)
+            {
+                Console.WriteLine("That page does not exist.");
+                return;
+            }
+
+            List<Guest> pageGuests = guests.Skip((pageNumber - 1) * pageSize)
+                                           .Take(pageSize)
+                                           .ToList();
+
+            Console.WriteLine($"Page {pageNumber} of {totalPages}:");
+
+            foreach (Guest g in pageGuests)
+            {
+                Console.WriteLine($"Name: {g.guestName}, Room: {g.roomNumber}");
+            }
         }
     }
 }
