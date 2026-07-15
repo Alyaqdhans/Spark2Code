@@ -481,7 +481,53 @@
 
         static void CheckOutGuest()
         {
+            Console.Write("Enter Guest ID to check out: ");
+            string guestId = Console.ReadLine()!;
 
+            Guest foundGuest = guests.FirstOrDefault(g => g.guestId == guestId)!;
+
+            if (foundGuest == null)
+            {
+                Console.WriteLine("Guest not found.");
+                return;
+            }
+
+            if (foundGuest.roomNumber == "Not Assigned")
+            {
+                Console.WriteLine("Guest has no active booking.");
+                return;
+            }
+
+            Room foundRoom = rooms.FirstOrDefault(r => r.roomNumber == foundGuest.roomNumber)!;
+
+            Console.WriteLine("Guest Name: " + foundGuest.guestName);
+            Console.WriteLine("Room Number: " + foundRoom.roomNumber);
+            Console.WriteLine("Room Type: " + foundRoom.roomType);
+            Console.WriteLine("Check-In Date: " + foundGuest.checkInDate);
+            Console.WriteLine("Total Nights: " + foundGuest.totalNights);
+            Console.WriteLine("Price Per Night: " + foundRoom.pricePerNight);
+            Console.WriteLine("Total Cost for Stay: " + foundGuest.calculateTotalCost(foundRoom.pricePerNight));
+
+            Console.Write("Confirm check-out? (Y/N): ");
+            string confirm = Console.ReadLine()!;
+
+            if (confirm.ToLower() == "n")
+            {
+                Console.WriteLine("Check-out cancelled.");
+                return;
+            }
+
+            foundRoom.isAvailable = true;
+            guests.Remove(foundGuest);
+            Console.WriteLine("Guest checked out successfully.");
+            
+            Console.WriteLine("Available Rooms: " + rooms.Where(r => r.isAvailable).ToList().Count);
+            Console.WriteLine("Total Guests: " + guests.Count);
+
+            if (rooms.Where(r => r.roomNumber == foundRoom.roomNumber).Any())
+            {
+                Console.WriteLine("Room " + foundRoom.roomNumber + " is now available for booking.");
+            }
         }
 
         static void RemoveUnavailableRooms()
