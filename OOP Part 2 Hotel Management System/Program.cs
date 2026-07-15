@@ -575,7 +575,37 @@
 
         static void ExtendGuestStay()
         {
+            Console.Write("Enter Guest ID to extend stay: ");
+            string guestId = Console.ReadLine()!;
 
+            Guest foundGuest = guests.FirstOrDefault(g => g.guestId == guestId)!;
+
+            if (foundGuest == null)
+            {
+                Console.WriteLine("Guest not found.");
+                return;
+            }
+
+            if (foundGuest.roomNumber == "Not Assigned")
+            {
+                Console.WriteLine("Guest has no active booking to extend.");
+                return;
+            }
+
+            Console.Write("Enter additional nights to extend stay: ");
+            int additionalNights = int.Parse(Console.ReadLine()!);
+
+            if (additionalNights <= 0)
+            {
+                Console.WriteLine("Invalid number of nights.");
+                return;
+            }
+
+            foundGuest.totalNights += additionalNights;
+            Console.WriteLine("Stay extended successfully.");
+            Room guestRoom = rooms.FirstOrDefault(r => r.roomNumber == foundGuest.roomNumber)!;
+            Console.WriteLine("New total nights: " + foundGuest.totalNights);
+            Console.WriteLine("New total cost for stay: " + foundGuest.calculateTotalCost(guestRoom.pricePerNight).ToString("0.00"));
         }
 
         static void HighestRevenueBooking()
