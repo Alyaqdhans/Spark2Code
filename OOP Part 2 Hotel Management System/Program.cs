@@ -67,7 +67,7 @@
             rooms.Add(new Room("102", "Double", 150.0, true));
             rooms.Add(new Room("103", "Suite", 250.0, true));
             rooms.Add(new Room("104", "Single", 80.0, false));
-            rooms.Add(new Room("105", "Double", 350.0, true));
+            rooms.Add(new Room("105", "Double", 350.0, false));
             rooms.Add(new Room("106", "Suite", 550.0, true));
 
             while (true)
@@ -532,7 +532,45 @@
 
         static void RemoveUnavailableRooms()
         {
+            List<Room> bookedRooms = rooms.Where(r => r.isAvailable == false).ToList();
+            List<Guest> bookedGuests = guests.Where(g => g.roomNumber != "Not Assigned").ToList();
+            List<Room> roomsToRemove = bookedRooms.Where(b => bookedGuests.Any(g => g.roomNumber == b.roomNumber) == false).ToList();
 
+            if (roomsToRemove.Count == 0)
+            {
+                Console.WriteLine("'All unavailable rooms are currently occupied. No rooms can be decommissioned.");
+                return;
+            }
+
+            foreach (Room room in roomsToRemove.OrderBy(r => r.roomNumber))
+            {
+                Console.WriteLine("Room Number: " + room.roomNumber);
+                Console.WriteLine("Room Type: " + room.roomType);
+                Console.WriteLine("Price Per Night: " + room.pricePerNight);
+                Console.WriteLine("===============================");
+            }
+
+            Console.Write($"Confirm removal of these rooms [{roomsToRemove.Count}]? (Y/N): ");
+            string confirm = Console.ReadLine()!;
+
+            if (confirm.ToLower() == "n")
+            {
+                Console.WriteLine("Room removal cancelled.");
+                return;
+            }
+
+            rooms.RemoveAll(r => roomsToRemove.Any(re => re.roomNumber == r.roomNumber));
+
+            Console.WriteLine("Rooms removed successfully.");
+            Console.WriteLine("Total Rooms: " + rooms.Count);
+            
+            List<Room> updatedRooms = rooms.Select(r => new Room(r.roomNumber, r.roomType, r.pricePerNight, r.isAvailable)).ToList();
+            foreach (Room room in updatedRooms)
+            {
+                Console.WriteLine("Room Number: " + room.roomNumber);
+                Console.WriteLine("Room Type: " + room.roomType);
+                Console.WriteLine("===============================");
+            }
         }
 
         static void ExtendGuestStay()
