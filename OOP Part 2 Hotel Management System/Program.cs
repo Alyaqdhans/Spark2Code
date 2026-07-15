@@ -431,7 +431,24 @@
 
         static void GuestLookupByName()
         {
+            Console.Write("Enter Guest Name to search: ");
+            string guestName = Console.ReadLine()!;
 
+            List<Guest> foundGuests = guests.Where(g => g.guestName.ToLower().Contains(guestName.ToLower())).ToList();
+
+            if (foundGuests.Any() == false)
+            {
+                Console.WriteLine("No guests found with the name: " + guestName);
+                return;
+            }
+
+            Console.WriteLine($"Found Guests ({foundGuests.Count}):");
+            Console.WriteLine("--------------------");
+            foreach (Guest guest in foundGuests)
+            {
+                guest.displayGuest();
+                Console.WriteLine("--------------------");
+            }
         }
 
         static void RoomTypeBreakdownReport()
