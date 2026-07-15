@@ -610,7 +610,21 @@
 
         static void HighestRevenueBooking()
         {
+            List<Guest> bookedGuests = guests.Where(g => g.roomNumber != "Not Assigned").ToList();
 
+            if (bookedGuests.Any() == false)
+            {
+                Console.WriteLine("No active bookings recorded.");
+                return;
+            }
+
+            Guest revenueGuest = bookedGuests.Select(g => new Guest(g.guestId, g.guestName, g.roomNumber, g.checkInDate, g.totalNights))
+                .OrderByDescending(g => g.calculateTotalCost(rooms.FirstOrDefault(r => r.roomNumber == g.roomNumber)!.pricePerNight))
+                .ToList().Take(1).First();
+            Console.WriteLine("Highest Revenue Booking:");
+            Console.WriteLine("Guest Name: " + revenueGuest.guestName);
+            Console.WriteLine("Room Number: " + revenueGuest.roomNumber);
+            Console.WriteLine("Total Cost for Stay: " + revenueGuest.calculateTotalCost(rooms.FirstOrDefault(r => r.roomNumber == revenueGuest.roomNumber)!.pricePerNight).ToString("0.00"));
         }
 
         static void GuestPaginationViewer()
