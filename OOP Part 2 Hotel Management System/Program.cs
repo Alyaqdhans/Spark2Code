@@ -403,7 +403,30 @@
 
         static void UpdateRoomPrice()
         {
+            Console.Write("Enter Room Number to update price: ");
+            string roomNumber = Console.ReadLine()!;
 
+            Room foundRoom = rooms.FirstOrDefault(r => r.roomNumber == roomNumber)!;
+
+            if (foundRoom == null)
+            {
+                Console.WriteLine("Room not found.");
+                return;
+            }
+
+            Console.Write($"Enter new price for Room {roomNumber}: ");
+            double newPrice = double.Parse(Console.ReadLine()!);
+
+            if (newPrice <= 0)
+            {
+                Console.WriteLine("Invalid Price.");
+                return;
+            }
+
+            Console.WriteLine("Room price updated successfully.");
+            Console.WriteLine("Old Price: " + foundRoom.pricePerNight);
+            foundRoom.pricePerNight = newPrice;
+            Console.WriteLine("New Price: " + newPrice);
         }
 
         static void GuestLookupByName()
