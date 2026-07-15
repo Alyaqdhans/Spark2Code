@@ -453,7 +453,30 @@
 
         static void RoomTypeBreakdownReport()
         {
+            Console.WriteLine("Room Type Breakdown Report:");
 
+            List<Room> singleRooms = rooms.Where(r => r.roomType == "Single").ToList();
+            Console.WriteLine("Total Rooms (Single): " + singleRooms.Count);
+            Console.Write("Average Price (Single): ");
+            if (singleRooms.Count == 0) Console.WriteLine("N/A");
+            else Console.WriteLine(singleRooms.Average(r => r.pricePerNight).ToString("0.00"));
+
+            List<Room> doubleRooms = rooms.Where(r => r.roomType == "Double").ToList();
+            Console.WriteLine("Total Rooms (Double): " + doubleRooms.Count);
+            Console.Write("Average Price (Double): ");
+            if (doubleRooms.Count == 0) Console.WriteLine("N/A");
+            else Console.WriteLine(doubleRooms.Average(r => r.pricePerNight).ToString("0.00"));
+
+            List<Room> suiteRooms = rooms.Where(r => r.roomType == "Suite").ToList();
+            Console.WriteLine("Total Rooms (Suite): " + suiteRooms.Count);
+            Console.Write("Average Price (Suite): ");
+            if (suiteRooms.Count == 0) Console.WriteLine("N/A");
+            else Console.WriteLine(suiteRooms.Average(r => r.pricePerNight).ToString("0.00"));
+
+            Console.WriteLine("Total Rooms: " + rooms.Count);
+            Console.Write("Average Price (All Rooms): ");
+            if (rooms.Count == 0) Console.WriteLine("N/A");
+            else Console.WriteLine(rooms.Average(r => r.pricePerNight).ToString("0.00"));
         }
 
         static void CheckOutGuest()
