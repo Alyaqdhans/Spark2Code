@@ -61,3 +61,21 @@ create table EDependent
 	Dependent_name varchar(20) not null,
 	Primary key (Essn, Dependent_name),
 );
+
+select * from Employee;
+
+insert into Employee(Fname, Lname, Bdate, Gender, Salary)
+values ('Ahmed', 'Sabahi', '2000-5-31', 1, 2100),
+	   ('Mohammed', 'Saleh', '2001-11-22', 1, 1100),
+	   ('Sarah', 'Sulaimani', '2009-1-1', 0, 1500),
+	   ('Ali', 'Ahmed', '2011-11-11', 1, 900),
+	   ('Salim', 'Nasser', '2007-3-4', 1, 760);
+
+update Employee set Salary += 25;
+update Employee set Salary += 25 where Ssn = 6;
+update Employee set EAddress = 'Nizwa' where Salary > 1000;
+update Employee set Dno = 2 where Bdate >= '2009-1-1';
+update Employee set Gender = 0 where Fname = 'Sarah';
+
+delete from Employee where Ssn = 7;
+delete from Employee where Salary < 1000;
