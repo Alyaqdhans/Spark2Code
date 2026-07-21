@@ -1,5 +1,12 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path="DatabaseTasks/Airline Information System - ERD.png" />
+    <File Path="DatabaseTasks/Airline Information System - Mapping.drawio.png" />
+    <File Path="DatabaseTasks/College Management System - ERD.png" />
+    <File Path="DatabaseTasks/College Management System - Mapping.drawio.png" />
+    <File Path="DatabaseTasks/Company Database - ERD.png" />
+    <File Path="DatabaseTasks/Company Database - Mapping.drawio.png" />
+    <File Path="DatabaseTasks/CompanyDB.sql" />
     <File Path="DatabaseTasks/ERD_Case Study.png" />
   </Folder>
   <Project Path="BankingConsoleApp/BankingConsoleApp.csproj" Id="1d1c6750-f027-4476-86d1-f54a03546f63" />
